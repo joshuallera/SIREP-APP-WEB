@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SIREP · Sistema de Reportes de Edificios y Problemáticas</title>
+<link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+
+<header class="navbar">
+  <div class="nav-inner">
+    <div class="brand">
+      <img src="logo.png" alt="SIREP" class="logo-badge">
+      <span>SIREP</span>
+    </div>
+    <nav class="nav-links">
+      <a href="#inicio">Inicio</a>
+      <a href="#edificios">Edificios</a>
+      <a href="#reportes">Reportes</a>
+      <a href="#como-funciona">Cómo funciona</a>
+    </nav>
+    <button class="btn btn-primary btn-small">Iniciar sesión</button>
+  </div>
+</header>
+
+<section class="hero" id="inicio">
+  <div class="hero-stars"></div>
+  <div class="hero-skyline" id="heroSkyline"></div>
+  <div class="hero-content">
+    <span class="badge">Centraliza · Reporta · Da seguimiento</span>
+    <h1>Toda la información de tus edificios en un solo lugar</h1>
+    <p>SIREP reúne los datos clave de cada edificio y te permite reportar problemáticas con foto y una duración definida por ti. Cada reporte permanece visible solo el tiempo que elijas, hasta un máximo de 24 horas, y luego desaparece solo.</p>
+    <div class="hero-actions">
+      <button class="btn btn-white" id="btnPublicarHero">+ Publicar un reporte</button>
+      <a href="#edificios" class="btn btn-outline">Explorar edificios</a>
+    </div>
+    <div class="hero-stats" id="heroStats"></div>
+  </div>
+</section>
+
+<section class="section" id="edificios">
+  <div class="section-inner">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">Edificios</p>
+        <h2>Los 6 edificios que administramos</h2>
+        <p class="section-sub">Cada ficha reúne la imagen del edificio junto con su información clave: ubicación, tipo, año de construcción, pisos, unidades y administrador responsable.</p>
+      </div>
+      <div class="stat-pill">
+        <span class="stat-pill-icon">▦</span>
+        <div><strong>6</strong><small>Edificios con información activa</small></div>
+      </div>
+    </div>
+    <div id="buildingsList" class="buildings-list"></div>
+  </div>
+</section>
+
+<section class="section section-alt" id="reportes">
+  <div class="section-inner">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">Reportes</p>
+        <h2>Reportes activos de la comunidad</h2>
+        <p class="section-sub">Estos reportes permanecen visibles solo durante el tiempo elegido por quien los publicó. Al cumplirse el plazo, desaparecen automáticamente del panel.</p>
+      </div>
+      <button class="btn btn-primary" id="btnPublicarReportes">+ Publicar reporte</button>
+    </div>
+
+    <div class="filters" id="buildingFilters"></div>
+    <p class="report-count" id="reportCount"></p>
+    <div class="reports-grid" id="reportsGrid"></div>
+
+    <form class="report-form" id="reportForm">
+      <h3>Publicar un nuevo reporte</h3>
+      <div class="form-row">
+        <label>Edificio
+          <select id="fBuilding" required></select>
+        </label>
+        <label>Categoría
+          <select id="fCategory" required>
+            <option>Plomería</option>
+            <option>Eléctrico</option>
+            <option>Estructura</option>
+            <option>Ascensor</option>
+            <option>Limpieza</option>
+            <option>Otro</option>
+          </select>
+        </label>
+        <label>Prioridad
+          <select id="fPriority" required>
+            <option>Alta</option>
+            <option>Media</option>
+            <option>Baja</option>
+          </select>
+        </label>
+      </div>
+      <label class="full">Título
+        <input type="text" id="fTitle" placeholder="Ej. Fuga de agua en el piso 3" required maxlength="70">
+      </label>
+      <label class="full">Descripción
+        <textarea id="fDesc" rows="3" placeholder="Describe la problemática con detalle" required maxlength="300"></textarea>
+      </label>
+      <div class="form-row">
+        <label>Foto (opcional)
+          <input type="file" id="fPhoto" accept="image/*">
+        </label>
+        <label>Horas visible (máx. 24)
+          <input type="number" id="fHours" min="1" max="24" value="24" required>
+        </label>
+      </div>
+      <div class="form-actions">
+        <button type="button" class="btn btn-outline-dark" id="btnCancelForm">Cancelar</button>
+        <button type="submit" class="btn btn-primary">Publicar reporte</button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<section class="section" id="como-funciona">
+  <div class="section-inner">
+    <p class="eyebrow">Cómo funciona</p>
+    <h2>Reportar nunca fue tan simple</h2>
+    <p class="section-sub">En cuatro pasos publicas una incidencia y dejas claro cuánto tiempo debe permanecer visible para el resto del equipo.</p>
+    <div class="steps-grid">
+      <div class="step-card">
+        <span class="step-num">01</span>
+        <div class="step-icon">⌂</div>
+        <h4>Explora los edificios</h4>
+        <p>Consulta la información clave de cada edificio: ubicación, año, pisos, unidades y datos de contacto del administrador.</p>
+      </div>
+      <div class="step-card">
+        <span class="step-num">02</span>
+        <div class="step-icon">◉</div>
+        <h4>Publica con foto</h4>
+        <p>Reporta la problemática, adjunta una foto del problema y define la categoría y prioridad para que el equipo la atienda.</p>
+      </div>
+      <div class="step-card">
+        <span class="step-num">03</span>
+        <div class="step-icon">◷</div>
+        <h4>Elige la duración</h4>
+        <p>Decide cuántas horas quieres que tu reporte permanezca visible. El máximo permitido es de 24 horas.</p>
+      </div>
+      <div class="step-card">
+        <span class="step-num">04</span>
+        <div class="step-icon">⦸</div>
+        <h4>Se oculta solo</h4>
+        <p>Cuando el tiempo se agota, el reporte desaparece automáticamente y ya no ocupa espacio en el panel.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="brand">
+        <img src="logo.png" alt="SIREP" class="logo-badge">
+        <span>SIREP</span>
+      </div>
+      <p>La plataforma que centraliza la información de tus edificios y convierte cada problemática en un reporte con seguimiento y duración personalizada.</p>
+      <div class="social-row">
+        <a href="#" aria-label="X">𝕏</a>
+        <a href="#" aria-label="LinkedIn">in</a>
+        <a href="#" aria-label="Instagram">◎</a>
+        <a href="#" aria-label="Facebook">f</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h5>Navegación</h5>
+      <a href="#inicio">Inicio</a>
+      <a href="#edificios">Edificios</a>
+      <a href="#reportes">Reportes</a>
+      <a href="#como-funciona">Cómo funciona</a>
+    </div>
+    <div class="footer-col">
+      <h5>Recursos</h5>
+      <a href="#como-funciona">Cómo funciona</a>
+      <a href="#reportes">Reportes activos</a>
+      <a href="#edificios">Edificios</a>
+    </div>
+    <div class="footer-col">
+      <h5>Contacto</h5>
+      <span>contacto@sirep.app</span>
+      <span>+57 601 555 0182</span>
+      <span>Bogotá, Colombia</span>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
